@@ -1,0 +1,6 @@
+name: BuddyUtil
+version: '${project.version}'
+main: com.billthecomputerguy.buddyutil.Main
+api-version: 1.19
+commands:
+  buddy:

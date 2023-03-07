@@ -1,0 +1,101 @@
+package com.billthecomputerguy.buddyutil;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scoreboard.*;
+
+import java.util.HashMap;
+import java.util.UUID;
+
+public class playerStatistics implements Listener {
+    // A hashmap is like a Python dictionary, key value pairs
+    private HashMap<UUID, Integer> blocksBrocken = new HashMap<>();
+    private HashMap<UUID, Integer> blocksPlaced = new HashMap<>();
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        // Get player instance
+        Player player = event.getPlayer();
+        // Create scoreboard
+        Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
+
+        /*
+         -------------------- Objectives are for static scoreboard text --------------------
+         */
+        Objective obj = board.registerNewObjective("playerboard", "dummy");
+
+        // Set location and displayname
+        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+        obj.setDisplayName(ChatColor.GREEN.toString() + player.getDisplayName());
+
+        // A Score is a line of text
+        Score website = obj.getScore(ChatColor.YELLOW + "lab.wncc.net");
+        // Each line needs a number starting from the bottom
+        website.setScore(1);
+
+        Score space = obj.getScore(" ");
+        space.setScore(2);
+
+        /*
+         -------------------- Teams are for dynamic scoreboard text --------------------
+         */
+        // ---------- BLOCKS BROKEN ----------
+        Team blocksBroken = board.registerNewTeam("blocksbroken");
+        // Add unique chat color to distinguish between entries
+        blocksBroken.addEntry(ChatColor.BOLD.toString());
+        // Blocks broken: 5 prefix and suffix
+        blocksBroken.setPrefix(ChatColor.BLUE + "Blocks broken: ");
+        blocksBroken.setSuffix(ChatColor.YELLOW + "0");
+        // Set to line 3 from top
+        obj.getScore(ChatColor.BOLD.toString()).setScore(3);
+
+        // ---------- BLOCKS PLACED ----------
+        Team blocksPlaced = board.registerNewTeam("blocksplaced");
+        // Add unique chat color to distinguish between entries
+        blocksPlaced.addEntry(ChatColor.BLUE.toString());
+        // Blocks broken: 5 prefix and suffix
+        blocksPlaced.setPrefix(ChatColor.BLUE + "Blocks placed: ");
+        blocksPlaced.setSuffix(ChatColor.YELLOW + "0");
+        // Set to line 4 from top the chatcolor must match the addentry chat color
+        obj.getScore(ChatColor.BLUE.toString()).setScore(4);
+
+        // Show the scoreboard
+        player.setScoreboard(board);
+        this.blocksBrocken.put(player.getUniqueId(), 0);
+        this.blocksPlaced.put(player.getUniqueId(), 0);
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        // Get current player instance
+        Player player = event.getPlayer();
+
+        int amount = blocksPlaced.get(player.getUniqueId());
+        amount++;
+        // Update brocksplaced amount in hashmap
+        blocksPlaced.put(player.getUniqueId(), amount);
+        // Update scoreboard display
+        player.getScoreboard().getTeam("blocksplaced").setSuffix(ChatColor.YELLOW.toString() + amount);
+
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        // Get current player instance
+        Player player = event.getPlayer();
+
+        int amount = blocksBrocken.get(player.getUniqueId());
+        amount++;
+        // Update brocksbroken amount in hashmap
+        blocksBrocken.put(player.getUniqueId(), amount);
+        // Update scoreboard display
+        player.getScoreboard().getTeam("blocksbroken").setSuffix(ChatColor.YELLOW.toString() + amount);
+
+    }
+}
