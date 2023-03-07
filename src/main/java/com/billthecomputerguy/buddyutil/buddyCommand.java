@@ -7,7 +7,11 @@ import org.bukkit.entity.Player;
 
 public class buddyCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(
+            CommandSender sender,
+            Command command,
+            String label,
+            String[] args) {
         // Is the command sender a Player?
         if (sender instanceof Player) {
             Player player = (Player) sender;
@@ -15,8 +19,7 @@ public class buddyCommand implements CommandExecutor {
                 // Test the first argument for a command
                 if (args[0].equalsIgnoreCase("help")) {
                     player.sendMessage("Use /buddy tpspawn (tp to world spawnpoint)");
-                }
-                else if (args[0].equalsIgnoreCase("tpspawn")) {
+                } else if (args[0].equalsIgnoreCase("tpspawn")) {
                     // Get current world spawn location, teleport player to world spawn
                     player.teleport(player.getWorld().getSpawnLocation());
                     player.sendMessage("Teleported to World Spawn");

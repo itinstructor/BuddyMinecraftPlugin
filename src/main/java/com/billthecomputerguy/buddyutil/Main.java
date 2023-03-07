@@ -24,8 +24,7 @@ public final class Main extends JavaPlugin implements Listener {
         buddyBossBar = Bukkit.createBossBar(
                 ChatColor.YELLOW + "World Maps at lab.wncc.net",
                 BarColor.BLUE,
-                BarStyle.SEGMENTED_6
-        );
+                BarStyle.SEGMENTED_6);
         // Set progress to 100%
         buddyBossBar.setProgress(1.0);
 
@@ -40,7 +39,8 @@ public final class Main extends JavaPlugin implements Listener {
         Player player = (Player) event.getPlayer();
 
         // Play chime at join at the pitch of G
-        // e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
+        // e.getPlayer().playSound(e.getPlayer().getLocation(),
+        // Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
 
         // Get motd of the current server
         String motd = this.getServer().getMotd();
@@ -51,15 +51,14 @@ public final class Main extends JavaPlugin implements Listener {
                 ChatColor.GOLD + "Welcome!",
                 20 * 1,
                 20 * 5,
-                20 * 1
-        );
-//        player.sendTitle(
-//                ChatColor.GOLD + "Buddy's Lobby!",
-//                ChatColor.GOLD + "World Maps at lab.wncc.net",
-//                20,
-//                100,
-//                20
-//        );
+                20 * 1);
+        // player.sendTitle(
+        // ChatColor.GOLD + "Buddy's Lobby!",
+        // ChatColor.GOLD + "World Maps at lab.wncc.net",
+        // 20,
+        // 100,
+        // 20
+        // );
         // Display BossBar when player joins
         buddyBossBar.addPlayer(player);
         // Remove BossBar after delay
@@ -72,10 +71,9 @@ public final class Main extends JavaPlugin implements Listener {
     }
 }
 
-//    @EventHandler
-//    public void onMove(PlayerMoveEvent e) {
-//        // Remove BossBar when player moves
-//        buddyBossBar.removePlayer((e.getPlayer()));
-//    }
-//}
-
+// @EventHandler
+// public void onMove(PlayerMoveEvent e) {
+// // Remove BossBar when player moves
+// buddyBossBar.removePlayer((e.getPlayer()));
+// }
+// }

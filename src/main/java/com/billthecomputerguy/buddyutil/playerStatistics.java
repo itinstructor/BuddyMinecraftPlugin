@@ -28,7 +28,7 @@ public class playerStatistics implements Listener {
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
 
         /*
-         -------------------------- STATIC SCOREBOARD TEXT -------------------------
+         * ------------------- STATIC SCOREBOARD TEXT -----------------------
          */
         Objective obj = board.registerNewObjective("playerboard", "dummy");
 
@@ -45,8 +45,8 @@ public class playerStatistics implements Listener {
         space.setScore(2);
 
         /*
-         ------------------------------ BLOCKS BROKEN ------------------------------
-        */
+         * ------------------------------ BLOCKS BROKEN ------------------------------
+         */
         // Teams are used for dynamic scoreboard text
         Team blocksBroken = board.registerNewTeam("blocksbroken");
         // Add unique chat color to distinguish between entries
@@ -59,8 +59,8 @@ public class playerStatistics implements Listener {
         obj.getScore(ChatColor.BOLD.toString()).setScore(3);
 
         /*
-         ------------------------------ BLOCKS PLACED ------------------------------
-        */
+         * ------------------------------ BLOCKS PLACED ------------------------------
+         */
         Team blocksPlaced = board.registerNewTeam("blocksplaced");
         // Add unique chat color to distinguish between entries
         blocksPlaced.addEntry(ChatColor.BLUE.toString());
@@ -72,8 +72,8 @@ public class playerStatistics implements Listener {
         obj.getScore(ChatColor.BLUE.toString()).setScore(4);
 
         /*
-         ------------------------------ STEPS --------------------------------------
-        */
+         * ------------------------------ STEPS --------------------------------------
+         */
         Team steps = board.registerNewTeam("steps");
         // Add unique chat color to distinguish between entries
         steps.addEntry(ChatColor.AQUA.toString());
@@ -122,10 +122,12 @@ public class playerStatistics implements Listener {
     public void onPlayerMove(PlayerMoveEvent e) {
         // Get current player instance
         Player player = e.getPlayer();
-        // If the player doesn't actually move from block to block, return and don't do anything
-        if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
+        // If the player doesn't actually move from block to block, return and don't do
+        // anything
+        if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY()
+                && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
             return;
-        }else {
+        } else {
             // Update steps by one block
             int amount = steps.get(player.getUniqueId());
             amount++;
@@ -133,7 +135,7 @@ public class playerStatistics implements Listener {
             steps.put(player.getUniqueId(), amount);
             // Update scoreboard display
             player.getScoreboard().getTeam("steps").setSuffix(ChatColor.YELLOW.toString() + amount);
-            //steps.get(e.getPlayer()).setScore(steps.get(e.getPlayer()).getScore() + 1);
+            // steps.get(e.getPlayer()).setScore(steps.get(e.getPlayer()).getScore() + 1);
         }
     }
 }
