@@ -21,10 +21,7 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("buddy").setTabCompleter(new buddyTab());
 
         // Create BossBar object at the top of the screen
-        buddyBossBar = Bukkit.createBossBar(
-                ChatColor.YELLOW + "World Maps at lab.wncc.net",
-                BarColor.BLUE,
-                BarStyle.SEGMENTED_6);
+        buddyBossBar = Bukkit.createBossBar(ChatColor.YELLOW + "World Maps at lab.wncc.net", BarColor.BLUE, BarStyle.SEGMENTED_6);
         // Set progress to 100%
         buddyBossBar.setProgress(1.0);
 
@@ -46,12 +43,7 @@ public final class Main extends JavaPlugin implements Listener {
         String motd = this.getServer().getMotd();
         // Send message to player when they join Buddy's Lobby
         // fadeIn, stay, fadeOut: 20 ticks per second * seconds delay
-        player.sendTitle(
-                ChatColor.GOLD + motd,
-                ChatColor.GOLD + "Welcome!",
-                20 * 1,
-                20 * 5,
-                20 * 1);
+        player.sendTitle(ChatColor.GOLD + motd, ChatColor.GOLD + "Welcome!", 20 * 1, 20 * 5, 20 * 1);
         // player.sendTitle(
         // ChatColor.GOLD + "Buddy's Lobby!",
         // ChatColor.GOLD + "World Maps at lab.wncc.net",

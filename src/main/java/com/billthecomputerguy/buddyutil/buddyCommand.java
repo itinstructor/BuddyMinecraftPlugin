@@ -7,11 +7,7 @@ import org.bukkit.entity.Player;
 
 public class buddyCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(
-            CommandSender sender,
-            Command command,
-            String label,
-            String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Is the command sender a Player?
         if (sender instanceof Player) {
             Player player = (Player) sender;

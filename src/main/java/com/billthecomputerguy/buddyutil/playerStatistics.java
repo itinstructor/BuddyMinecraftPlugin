@@ -24,7 +24,7 @@ public class playerStatistics implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         // Get player instance
         Player player = event.getPlayer();
-        // Create scoreboard
+        // Crseate scoreboard
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
 
         /*
@@ -124,8 +124,7 @@ public class playerStatistics implements Listener {
         Player player = e.getPlayer();
         // If the player doesn't actually move from block to block, return and don't do
         // anything
-        if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY()
-                && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
+        if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
             return;
         } else {
             // Update steps by one block
