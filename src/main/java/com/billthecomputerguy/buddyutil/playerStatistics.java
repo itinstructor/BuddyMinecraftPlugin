@@ -18,7 +18,6 @@ public class playerStatistics implements Listener {
     // A hashmap is like a Python dictionary, key value pairs
     private HashMap<UUID, Integer> blocksBrocken = new HashMap<>();
     private HashMap<UUID, Integer> blocksPlaced = new HashMap<>();
-
     private HashMap<UUID, Integer> steps = new HashMap<>();
 
     @EventHandler
@@ -29,7 +28,7 @@ public class playerStatistics implements Listener {
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
 
         /*
-         -------------------- Objectives are for static scoreboard text --------------------
+         -------------------------- STATIC SCOREBOARD TEXT -------------------------
          */
         Objective obj = board.registerNewObjective("playerboard", "dummy");
 
@@ -46,9 +45,9 @@ public class playerStatistics implements Listener {
         space.setScore(2);
 
         /*
-         -------------------- Teams are for dynamic scoreboard text --------------------
-         */
-        // ---------- BLOCKS BROKEN ----------
+         ------------------------------ BLOCKS BROKEN ------------------------------
+        */
+        // Teams are used for dynamic scoreboard text
         Team blocksBroken = board.registerNewTeam("blocksbroken");
         // Add unique chat color to distinguish between entries
         blocksBroken.addEntry(ChatColor.BOLD.toString());
@@ -56,30 +55,38 @@ public class playerStatistics implements Listener {
         blocksBroken.setPrefix(ChatColor.BLUE + "Blocks broken: ");
         blocksBroken.setSuffix(ChatColor.YELLOW + "0");
         // Set to line 3 from top
+        // This chatcolor must match the addentry chat color to display
         obj.getScore(ChatColor.BOLD.toString()).setScore(3);
 
-        // ---------- BLOCKS PLACED ----------
+        /*
+         ------------------------------ BLOCKS PLACED ------------------------------
+        */
         Team blocksPlaced = board.registerNewTeam("blocksplaced");
         // Add unique chat color to distinguish between entries
         blocksPlaced.addEntry(ChatColor.BLUE.toString());
         // Blocks broken: 5 prefix and suffix
         blocksPlaced.setPrefix(ChatColor.BLUE + "Blocks placed: ");
         blocksPlaced.setSuffix(ChatColor.YELLOW + "0");
-        // Set to line 4 from top the chatcolor must match the addentry chat color
+        // Set to line 4 from top
+        // This chatcolor must match the addentry chat color to display
         obj.getScore(ChatColor.BLUE.toString()).setScore(4);
 
-        // ---------- STEPS----------
+        /*
+         ------------------------------ STEPS --------------------------------------
+        */
         Team steps = board.registerNewTeam("steps");
         // Add unique chat color to distinguish between entries
         steps.addEntry(ChatColor.AQUA.toString());
         // Blocks broken: 5 prefix and suffix
         steps.setPrefix(ChatColor.BLUE + "Steps: ");
         steps.setSuffix(ChatColor.YELLOW + "0");
-        // Set to line 4 from top the chatcolor must match the addentry chat color
+        // Set to line 5 from top
+        // This chatcolor must match the addentry chat color to display
         obj.getScore(ChatColor.AQUA.toString()).setScore(5);
 
         // Show the scoreboard
         player.setScoreboard(board);
+        // Show the teams information
         this.blocksBrocken.put(player.getUniqueId(), 0);
         this.blocksPlaced.put(player.getUniqueId(), 0);
         this.steps.put(player.getUniqueId(), 0);
@@ -96,7 +103,6 @@ public class playerStatistics implements Listener {
         blocksPlaced.put(player.getUniqueId(), amount);
         // Update scoreboard display
         player.getScoreboard().getTeam("blocksplaced").setSuffix(ChatColor.YELLOW.toString() + amount);
-
     }
 
     @EventHandler
@@ -110,21 +116,24 @@ public class playerStatistics implements Listener {
         blocksBrocken.put(player.getUniqueId(), amount);
         // Update scoreboard display
         player.getScoreboard().getTeam("blocksbroken").setSuffix(ChatColor.YELLOW.toString() + amount);
-
     }
+
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         // Get current player instance
         Player player = e.getPlayer();
-
-        if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) return;
-
-        int amount = steps.get(player.getUniqueId());
-        amount++;
-        // Update steps amount in hashmap
-        steps.put(player.getUniqueId(), amount);
-        // Update scoreboard display
-        player.getScoreboard().getTeam("steps").setSuffix(ChatColor.YELLOW.toString() + amount);
-        //steps.get(e.getPlayer()).setScore(steps.get(e.getPlayer()).getScore() + 1);
+        // If the player doesn't actually move from block to block, return and don't do anything
+        if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
+            return;
+        }else {
+            // Update steps by one block
+            int amount = steps.get(player.getUniqueId());
+            amount++;
+            // Update steps amount in hashmap
+            steps.put(player.getUniqueId(), amount);
+            // Update scoreboard display
+            player.getScoreboard().getTeam("steps").setSuffix(ChatColor.YELLOW.toString() + amount);
+            //steps.get(e.getPlayer()).setScore(steps.get(e.getPlayer()).getScore() + 1);
+        }
     }
 }
