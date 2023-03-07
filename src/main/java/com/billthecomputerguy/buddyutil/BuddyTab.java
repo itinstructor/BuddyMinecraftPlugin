@@ -1,3 +1,9 @@
+/*****************************************
+ * Name: buddyTab.java
+ * Written by:
+ * Written on:
+ * Purpose: Provide tab completion for buddy command
+ *****************************************/
 package com.billthecomputerguy.buddyutil;
 
 import org.bukkit.command.Command;
@@ -9,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class buddyTab implements TabCompleter {
+public class BuddyTab implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 

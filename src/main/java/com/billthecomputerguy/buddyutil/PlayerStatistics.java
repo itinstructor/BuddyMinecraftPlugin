@@ -1,4 +1,10 @@
 package com.billthecomputerguy.buddyutil;
+/*****************************************
+ * Name: playerStatistics.java
+ * Written by:
+ * Written on:
+ * Purpose: Demonstrate methods of input
+ *****************************************/
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,7 +20,7 @@ import org.bukkit.scoreboard.*;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class playerStatistics implements Listener {
+public class PlayerStatistics implements Listener {
     // A hashmap is like a Python dictionary, key value pairs
     private HashMap<UUID, Integer> blocksBrocken = new HashMap<>();
     private HashMap<UUID, Integer> blocksPlaced = new HashMap<>();
@@ -72,7 +78,7 @@ public class playerStatistics implements Listener {
         obj.getScore(ChatColor.BLUE.toString()).setScore(4);
 
         /*
-         * ------------------------------ STEPS --------------------------------------
+         * ------------------------------ COUNT STEPS --------------------------------
          */
         Team steps = board.registerNewTeam("steps");
         // Add unique chat color to distinguish between entries
@@ -84,6 +90,9 @@ public class playerStatistics implements Listener {
         // This chatcolor must match the addentry chat color to display
         obj.getScore(ChatColor.AQUA.toString()).setScore(5);
 
+        /*
+         * ------------------------------ DISPLAY SCOREBOARD -------------------------
+         */
         // Show the scoreboard
         player.setScoreboard(board);
         // Show the teams information
@@ -92,6 +101,10 @@ public class playerStatistics implements Listener {
         this.steps.put(player.getUniqueId(), 0);
     }
 
+
+    /*
+     * ----------------------------------- ONBLOCKPLACE -----------------------------
+     */
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         // Get current player instance
@@ -105,6 +118,9 @@ public class playerStatistics implements Listener {
         player.getScoreboard().getTeam("blocksplaced").setSuffix(ChatColor.YELLOW.toString() + amount);
     }
 
+    /*
+     * ----------------------------------- ONBLOCKBREAK ----------------------------
+     */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         // Get current player instance
@@ -118,12 +134,15 @@ public class playerStatistics implements Listener {
         player.getScoreboard().getTeam("blocksbroken").setSuffix(ChatColor.YELLOW.toString() + amount);
     }
 
+    /*
+     * ----------------------------------- ONPLAYERMOVE -----------------------------
+     */
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         // Get current player instance
         Player player = e.getPlayer();
-        // If the player doesn't actually move from block to block, return and don't do
-        // anything
+        // If the player doesn't actually move from block to block,
+        // return and don't do anything
         if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
             return;
         } else {
