@@ -7,6 +7,8 @@ BuddyUtils is a Minecraft Bukkit plugin developed in Intellij and Coretto Java 1
 - (03-06-23) V1 Add step counter by measuring player movement.
 - (03-02-23) V1 Add a scoreboard displaying blocks broken and blocks placed counter
 
+![Alt text of the image](https://github.com/username/repository/blob/master/img/octocat.png)
+
 ### Purpose
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
 

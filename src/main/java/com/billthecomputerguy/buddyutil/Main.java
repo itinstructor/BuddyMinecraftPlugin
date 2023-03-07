@@ -38,7 +38,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        // Get player instance
+        // Get current player instance
         Player player = (Player) event.getPlayer();
 
         // Play chime at join at the pitch of G
@@ -55,6 +55,7 @@ public final class Main extends JavaPlugin implements Listener {
         buddyBossBar.addPlayer(player);
 
         // Remove BossBar after delay
+        // Create a scheduled task for this pluggable
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
             @Override
             public void run() {
