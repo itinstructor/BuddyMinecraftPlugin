@@ -2,7 +2,6 @@ package com.billthecomputerguy.buddyutil;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +17,7 @@ public final class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         // Create buddy command instances
-        getCommand("buddy").setExecutor(new buddy());
+        getCommand("buddy").setExecutor(new buddyCommand());
         getCommand("buddy").setTabCompleter(new buddyTab());
 
         // Create BossBar object at the top of the screen
