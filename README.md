@@ -3,9 +3,12 @@
 BuddyUtils is a Minecraft Bukkit plugin developed in Intellij and Coretto Java 17 for [Buddy's Minecraft Server](https://lab.wncc.net). The Minecraft server is a project of the Computer Science program at Western Nebraska Community College.
 
 
+
 ## Version History
 - (03-06-23) V1 Add step counter by measuring player movement.
-- (03-02-23) V1 Add a scoreboard displaying blocks broken and blocks placed counter
+- (03-02-23) V1 Add a scoreboard displaying blocks broken and blocks placed counter.
+- (02-25-23) V1 Add buddy command with tpspawn (teleport to worldspawn) and help.
+- (02-01-23) V1 Add on entry to world Boss bar and welcome to world announcement with user's display name.
 
 ![Minecraft screenshot of Buddy's Lobby](https://raw.githubusercontent.com/itinstructor/BuddyMinecraftPlugin/master/screenshot.png)
 
