@@ -10,7 +10,7 @@ BuddyUtils is a Minecraft Bukkit plugin developed in Intellij and Coretto Java 1
 - (02-25-23) V1 Add buddy command with tpspawn (teleport to worldspawn) and help.
 - (02-01-23) V1 Add on entry to world Boss bar and welcome to world announcement with user's display name.
 
-![Minecraft screenshot of Buddy's Lobby](https://raw.githubusercontent.com/itinstructor/BuddyMinecraftPlugin/master/screenshot.png)
+![Minecraft screenshot of Buddy's Lobby](https://raw.githubusercontent.com/itinstructor/BuddyMinecraftPlugin/master/images/screenshot.png)
 
 ### Purpose
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
