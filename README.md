@@ -5,6 +5,7 @@ BuddyUtils is a Minecraft Bukkit plugin developed in Intellij and Coretto Java 1
 
 
 ## Version History
+- (03-07-23) V1 Added onJoin chat messages, hoverable and clickable
 - (03-06-23) V1 Add step counter by measuring player movement.
 - (03-02-23) V1 Add a scoreboard displaying blocks broken and blocks placed counter.
 - (02-25-23) V1 Add buddy command with tpspawn (teleport to worldspawn) and help.

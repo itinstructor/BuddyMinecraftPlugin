@@ -6,6 +6,10 @@
  *****************************************/
 package com.billthecomputerguy.buddyutil;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -44,6 +48,23 @@ public final class Main extends JavaPlugin implements Listener {
         // Play chime at join at the pitch of G
         // e.getPlayer().playSound(e.getPlayer().getLocation(),
         // Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
+
+        // Send lab.wncc.net chat message
+        TextComponent start = new TextComponent("§7Maps at ");
+
+        TextComponent url = new TextComponent("§Blab.wncc.net");
+        url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://lab.wncc.net"));
+        url.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click for world maps.")));
+
+        TextComponent buddycommand = new TextComponent("\n/buddy tpspawn");
+        buddycommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("/buddy help")));
+
+        // Combine textcomponents into one command
+        start.addExtra(url);
+        start.addExtra(buddycommand);
+        // Send chat message
+        player.spigot().sendMessage(start);
+
 
         // Get motd of the current server
         String motd = this.getServer().getMotd();
