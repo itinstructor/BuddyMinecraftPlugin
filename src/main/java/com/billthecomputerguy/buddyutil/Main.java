@@ -49,21 +49,28 @@ public final class Main extends JavaPlugin implements Listener {
         // e.getPlayer().playSound(e.getPlayer().getLocation(),
         // Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
 
-        // Send lab.wncc.net chat message
-        TextComponent start = new TextComponent("§7Maps at ");
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+            @Override
+            public void run() {
+                // Send lab.wncc.net chat message
+                TextComponent start = new TextComponent("§7Maps at ");
 
-        TextComponent url = new TextComponent("§Blab.wncc.net");
-        url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://lab.wncc.net"));
-        url.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click for world maps.")));
+                TextComponent url = new TextComponent("§Blab.wncc.net");
+                url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://lab.wncc.net"));
+                url.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click for world maps.")));
 
-        TextComponent buddycommand = new TextComponent("\n/buddy tpspawn");
-        buddycommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("/buddy help")));
+                TextComponent buddycommand = new TextComponent("\n/buddy tpspawn");
+                buddycommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("/buddy help")));
 
-        // Combine textcomponents into one command
-        start.addExtra(url);
-        start.addExtra(buddycommand);
+                // Combine textcomponents into one command
+                start.addExtra(url);
+                start.addExtra(buddycommand);
+                player.spigot().sendMessage(start);
+            }
+        }, 20 * 60 * 5); // 20 ticks per second * 60 seconds per minute * minutes 5 minutes
+
         // Send chat message
-        player.spigot().sendMessage(start);
+        //player.spigot().sendMessage(start);
 
 
         // Get motd of the current server
