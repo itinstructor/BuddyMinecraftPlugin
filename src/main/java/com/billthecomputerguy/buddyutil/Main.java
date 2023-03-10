@@ -49,12 +49,13 @@ public final class Main extends JavaPlugin implements Listener {
         // e.getPlayer().playSound(e.getPlayer().getLocation(),
         // Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
 
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
             public void run() {
                 sendWNCCChatMessage(player);
             }
-        }, 20 * 60 * 5); // 20 ticks per second * 60 seconds per minute * minutes 5 minutes
+        },1200L * 5L, 1200L * 15L); // 1200 ticks per minute * minutes 5 minutes
 
         // Get motd of the current server
         String motd = this.getServer().getMotd();
@@ -65,8 +66,7 @@ public final class Main extends JavaPlugin implements Listener {
         // Display BossBar when player joins
         buddyBossBar.addPlayer(player);
 
-        // Remove BossBar after delay
-        // Create a scheduled task for this pluggable
+        // Remove BossBar after delay Create a scheduled task for this pluggable
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
             @Override
             public void run() {
@@ -77,18 +77,18 @@ public final class Main extends JavaPlugin implements Listener {
 
     public void sendWNCCChatMessage(Player player) {
         // Send lab.wncc.net chat message
-        TextComponent start = new TextComponent("§7Maps at ");
+        TextComponent start = new TextComponent("\n§7World maps at: ");
 
         TextComponent url = new TextComponent("§Blab.wncc.net");
         url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://lab.wncc.net"));
         url.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click for world maps.")));
 
-        TextComponent buddycommand = new TextComponent("\n/buddy tpspawn");
-        buddycommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("/buddy help")));
+        TextComponent buddyCommand = new TextComponent("\nBuddy Command usage: /buddy tpspawn\n");
+        buddyCommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Buddy command help: /buddy help")));
 
         // Combine textcomponents into one command
         start.addExtra(url);
-        start.addExtra(buddycommand);
+        start.addExtra(buddyCommand);
         player.spigot().sendMessage(start);
     }
 }
