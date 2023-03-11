@@ -22,18 +22,23 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 
 public final class Main extends JavaPlugin implements Listener {
-    private BossBar buddyBossBar;
-
+    //private BossBar buddyBossBar;
+    private Bar bar;
     @Override
     public void onEnable() {
+
+        this.getServer().getPluginManager().registerEvents(this, this);
+        bar = new Bar(this);
+        bar.createBar();
+
         // Create buddy command instances
         getCommand("buddy").setExecutor(new BuddyCommand());
         getCommand("buddy").setTabCompleter(new BuddyTab());
 
         // Create BossBar object at the top of the screen
-        buddyBossBar = Bukkit.createBossBar(ChatColor.YELLOW + "World Maps at lab.wncc.net", BarColor.BLUE, BarStyle.SEGMENTED_6);
+        // buddyBossBar = Bukkit.createBossBar(ChatColor.YELLOW + "World Maps at lab.wncc.net", BarColor.BLUE, BarStyle.SEGMENTED_6);
         // Set progress to 100%
-        buddyBossBar.setProgress(1.0);
+        // buddyBossBar.setProgress(1.0);
 
         // Register plugin events with server
         Bukkit.getPluginManager().registerEvents(this, this);
@@ -44,6 +49,9 @@ public final class Main extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         // Get current player instance
         Player player = (Player) event.getPlayer();
+        // Add player to the bar if they are not part of the bar already
+        if (!bar.getBar().getPlayers().contains(player))
+            bar.addPlayer((player));
 
         // Play chime at join at the pitch of G
         // e.getPlayer().playSound(e.getPlayer().getLocation(),
@@ -64,15 +72,15 @@ public final class Main extends JavaPlugin implements Listener {
         player.sendTitle(ChatColor.GOLD + motd, ChatColor.GOLD + "Welcome!", 20 * 1, 20 * 5, 20 * 1);
 
         // Display BossBar when player joins
-        buddyBossBar.addPlayer(player);
+        // buddyBossBar.addPlayer(player);
 
         // Remove BossBar after delay Create a scheduled task for this pluggable
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
-            @Override
-            public void run() {
-                buddyBossBar.removePlayer(player);
-            }
-        }, 20 * 15); // 20 ticks per second * seconds delay
+//        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+//            @Override
+//            public void run() {
+//                buddyBossBar.removePlayer(player);
+//            }
+//        }, 20 * 15); // 20 ticks per second * seconds delay
     }
 
     public void sendWNCCChatMessage(Player player) {
