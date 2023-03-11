@@ -22,15 +22,16 @@ import java.util.UUID;
 
 public class PlayerStatistics implements Listener {
     // A hashmap is like a Python dictionary, key value pairs
-    private HashMap<UUID, Integer> blocksBrocken = new HashMap<>();
-    private HashMap<UUID, Integer> blocksPlaced = new HashMap<>();
-    private HashMap<UUID, Integer> steps = new HashMap<>();
+    // Use Long to allow for large integers, especially for steps
+    private HashMap<UUID, Long> blocksBrocken = new HashMap<>();
+    private HashMap<UUID, Long> blocksPlaced = new HashMap<>();
+    private HashMap<UUID, Long> steps = new HashMap<>();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         // Get player instance
         Player player = event.getPlayer();
-        // Crseate scoreboard
+        // Create scoreboard
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
 
         /*
@@ -96,9 +97,9 @@ public class PlayerStatistics implements Listener {
         // Show the scoreboard
         player.setScoreboard(board);
         // Show the teams information
-        this.blocksBrocken.put(player.getUniqueId(), 0);
-        this.blocksPlaced.put(player.getUniqueId(), 0);
-        this.steps.put(player.getUniqueId(), 0);
+        this.blocksBrocken.put(player.getUniqueId(), 0L);
+        this.blocksPlaced.put(player.getUniqueId(), 0L);
+        this.steps.put(player.getUniqueId(), 0L);
     }
 
 
@@ -110,7 +111,7 @@ public class PlayerStatistics implements Listener {
         // Get current player instance
         Player player = event.getPlayer();
 
-        int amount = blocksPlaced.get(player.getUniqueId());
+        long amount = blocksPlaced.get(player.getUniqueId());
         amount++;
         // Update brocksplaced amount in hashmap
         blocksPlaced.put(player.getUniqueId(), amount);
@@ -126,7 +127,7 @@ public class PlayerStatistics implements Listener {
         // Get current player instance
         Player player = event.getPlayer();
 
-        int amount = blocksBrocken.get(player.getUniqueId());
+        long amount = blocksBrocken.get(player.getUniqueId());
         amount++;
         // Update brocksbroken amount in hashmap
         blocksBrocken.put(player.getUniqueId(), amount);
@@ -147,7 +148,7 @@ public class PlayerStatistics implements Listener {
             return;
         } else {
             // Update steps by one block
-            int amount = steps.get(player.getUniqueId());
+            long amount = steps.get(player.getUniqueId());
             amount++;
             // Update steps amount in hashmap
             steps.put(player.getUniqueId(), amount);
