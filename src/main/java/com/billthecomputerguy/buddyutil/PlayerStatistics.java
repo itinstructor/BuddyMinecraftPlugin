@@ -15,7 +15,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scoreboard.*;
 
 import java.util.HashMap;
@@ -41,9 +40,9 @@ public class PlayerStatistics implements Listener {
          * STATIC SCOREBOARD TEXT
          *****************************************************************************/
         // Create scoreboard display name of current player
-        String boardDisplayName = ChatColor.GREEN.toString() + player.getDisplayName();
+        String boardDisplayName = ChatColor.GREEN + player.getDisplayName();
         // Purpose and name of scoreboard
-        Objective obj = board.registerNewObjective("playerboard", "dummy", boardDisplayName);
+        Objective obj = board.registerNewObjective("playerboard", Criteria.DUMMY, boardDisplayName);
 
         // Set location and displayname
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
