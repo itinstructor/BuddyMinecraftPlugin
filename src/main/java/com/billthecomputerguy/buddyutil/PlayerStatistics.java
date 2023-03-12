@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scoreboard.*;
 
 import java.util.HashMap;
@@ -31,17 +32,23 @@ public class PlayerStatistics implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         // Get player instance
         Player player = event.getPlayer();
-        // Create scoreboard
-        Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
+        // Create scoreboard manager object
+        ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
+        // Use scoreboardManager to create a new scoreboard object
+        Scoreboard board = scoreboardManager.getNewScoreboard();
 
-        /*
-         * ------------------- STATIC SCOREBOARD TEXT -----------------------
-         */
-        Objective obj = board.registerNewObjective("playerboard", "dummy");
+        /*****************************************************************************
+         * STATIC SCOREBOARD TEXT
+         *****************************************************************************/
+        // Create scoreboard display name of current player
+        String boardDisplayName = ChatColor.GREEN.toString() + player.getDisplayName();
+        // Purpose and name of scoreboard
+        Objective obj = board.registerNewObjective("playerboard", "dummy", boardDisplayName);
 
         // Set location and displayname
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName(ChatColor.GREEN.toString() + player.getDisplayName());
+        // Set display name to player display name
+        // obj.setDisplayName(ChatColor.GREEN.toString() + player.getDisplayName());
 
         // A Score is a line of text
         Score website = obj.getScore(ChatColor.YELLOW + "lab.wncc.net");
@@ -51,9 +58,9 @@ public class PlayerStatistics implements Listener {
         Score space = obj.getScore(" ");
         space.setScore(2);
 
-        /*
-         * ------------------------------ BLOCKS BROKEN ------------------------------
-         */
+        /*****************************************************************************
+         * BLOCKS BROKEN
+         *****************************************************************************/
         // Teams are used for dynamic scoreboard text
         Team blocksBroken = board.registerNewTeam("blocksbroken");
         // Add unique chat color to distinguish between entries
@@ -65,9 +72,9 @@ public class PlayerStatistics implements Listener {
         // This chatcolor must match the addentry chat color to display
         obj.getScore(ChatColor.BOLD.toString()).setScore(3);
 
-        /*
-         * ------------------------------ BLOCKS PLACED ------------------------------
-         */
+        /*****************************************************************************
+         * BLOCKS PLACED
+         *****************************************************************************/
         Team blocksPlaced = board.registerNewTeam("blocksplaced");
         // Add unique chat color to distinguish between entries
         blocksPlaced.addEntry(ChatColor.BLUE.toString());
@@ -78,9 +85,9 @@ public class PlayerStatistics implements Listener {
         // This chatcolor must match the addentry chat color to display
         obj.getScore(ChatColor.BLUE.toString()).setScore(4);
 
-        /*
-         * ------------------------------ COUNT STEPS --------------------------------
-         */
+        /*****************************************************************************
+         * COUNT STEPS
+         *****************************************************************************/
         Team steps = board.registerNewTeam("steps");
         // Add unique chat color to distinguish between entries
         steps.addEntry(ChatColor.AQUA.toString());
@@ -91,9 +98,9 @@ public class PlayerStatistics implements Listener {
         // This chatcolor must match the addentry chat color to display
         obj.getScore(ChatColor.AQUA.toString()).setScore(5);
 
-        /*
-         * ------------------------------ DISPLAY SCOREBOARD -------------------------
-         */
+        /*****************************************************************************
+         * DISPLAY SCOREBOARD
+         *****************************************************************************/
         // Show the scoreboard
         player.setScoreboard(board);
         // Show the teams information
@@ -102,10 +109,9 @@ public class PlayerStatistics implements Listener {
         this.steps.put(player.getUniqueId(), 0L);
     }
 
-
-    /*
-     * ----------------------------------- ONBLOCKPLACE -----------------------------
-     */
+    /*****************************************************************************
+     * ONBLOCKPLACE
+     *****************************************************************************/
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         // Get current player instance

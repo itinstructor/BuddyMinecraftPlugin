@@ -27,8 +27,8 @@ public final class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        // Register events for plugin listener
-        this.getServer().getPluginManager().registerEvents(this, this);
+        // Register and Enable events for PlayerStatistics
+        Bukkit.getPluginManager().registerEvents(new PlayerStatistics(), this);
         // Create a new bar object
         bar = new Bar(this);
         // Call createBar method from Bar class
@@ -37,6 +37,9 @@ public final class Main extends JavaPlugin implements Listener {
         // Create buddy command instances
         getCommand("buddy").setExecutor(new BuddyCommand());
         getCommand("buddy").setTabCompleter(new BuddyTab());
+
+        // Register events for plugin listener
+        this.getServer().getPluginManager().registerEvents(this, this);
     }
 
     @Override

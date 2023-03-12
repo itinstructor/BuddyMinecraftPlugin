@@ -7,10 +7,9 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
 
 public class Bar {
-    // Id to identify runnable instance
+    // ID to identify runnable instance and return error
     private int taskID = -1;
     // Reference to Main class
     private final Main plugin;
