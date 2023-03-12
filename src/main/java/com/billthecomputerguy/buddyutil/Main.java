@@ -22,27 +22,27 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 
 public final class Main extends JavaPlugin implements Listener {
-    //private BossBar buddyBossBar;
+    // Variable for Bar object
     private Bar bar;
+
     @Override
     public void onEnable() {
-
+        // Register events for plugin listener
         this.getServer().getPluginManager().registerEvents(this, this);
+        // Create a new bar object
         bar = new Bar(this);
+        // Call createBar method from Bar class
         bar.createBar();
 
         // Create buddy command instances
         getCommand("buddy").setExecutor(new BuddyCommand());
         getCommand("buddy").setTabCompleter(new BuddyTab());
+    }
 
-        // Create BossBar object at the top of the screen
-        // buddyBossBar = Bukkit.createBossBar(ChatColor.YELLOW + "World Maps at lab.wncc.net", BarColor.BLUE, BarStyle.SEGMENTED_6);
-        // Set progress to 100%
-        // buddyBossBar.setProgress(1.0);
-
-        // Register plugin events with server
-        Bukkit.getPluginManager().registerEvents(this, this);
-        Bukkit.getPluginManager().registerEvents(new PlayerStatistics(), this);
+    @Override
+    public void onDisable() {
+        // Remove bar when server is shutting down
+        bar.getBar().removeAll();
     }
 
     @EventHandler
@@ -56,31 +56,18 @@ public final class Main extends JavaPlugin implements Listener {
         // Play chime at join at the pitch of G
         // e.getPlayer().playSound(e.getPlayer().getLocation(),
         // Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
-
-
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
             public void run() {
                 sendWNCCChatMessage(player);
             }
-        },1200L * 5L, 1200L * 15L); // 1200 ticks per minute * minutes 5 minutes
+        }, 60L, 1200L * 5L); // 1200 ticks per minute * minutes 5 minutes
 
         // Get motd of the current server
         String motd = this.getServer().getMotd();
         // Send message to player when they join Buddy's Lobby
         // fadeIn, stay, fadeOut: 20 ticks per second * seconds delay
         player.sendTitle(ChatColor.GOLD + motd, ChatColor.GOLD + "Welcome!", 20 * 1, 20 * 5, 20 * 1);
-
-        // Display BossBar when player joins
-        // buddyBossBar.addPlayer(player);
-
-        // Remove BossBar after delay Create a scheduled task for this pluggable
-//        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
-//            @Override
-//            public void run() {
-//                buddyBossBar.removePlayer(player);
-//            }
-//        }, 20 * 15); // 20 ticks per second * seconds delay
     }
 
     public void sendWNCCChatMessage(Player player) {
@@ -91,8 +78,8 @@ public final class Main extends JavaPlugin implements Listener {
         url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://lab.wncc.net"));
         url.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click for world maps.")));
 
-        TextComponent buddyCommand = new TextComponent("\nBuddy Command usage: /buddy tpspawn\n");
-        buddyCommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Buddy command help: /buddy help")));
+        TextComponent buddyCommand = new TextComponent("\nBuddy Command: /buddy tpspawn\n");
+        buddyCommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Buddy Command: /buddy help")));
 
         // Combine textcomponents into one command
         start.addExtra(url);

@@ -10,41 +10,50 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 
 public class Bar {
+    // Id to identify runnable instance
     private int taskID = -1;
     // Reference to Main class
     private final Main plugin;
+    // Variable for BossBar instance
     private BossBar bar;
 
-    // Constructor with 1 parameter of Main
+    // Constructor with 1 parameter of Main to access Main from this class
     public Bar(Main plugin) {
         this.plugin = plugin;
     }
 
     public void addPlayer(Player player) {
-        // Add bossbar to player
+        // Add player to bossbar instance
         bar.addPlayer(player);
     }
 
+    // Return an instance of the bar
     public BossBar getBar() {
         return bar;
     }
 
     public void createBar() {
+        // Create the initial bossbar
         bar = Bukkit.createBossBar(ChatColor.YELLOW + "World Maps at lab.wncc.net", BarColor.BLUE, BarStyle.SOLID);
+        // Show the bar
         bar.setVisible(true);
+        // Start the bar runnable
         cast();
     }
 
     public void cast() {
+        // How often the message changes in seconds
+        final int MESSAGE_CHANGE_SECONDS = 30;
         taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             // Handle the messages
             int count = -1;
             // The bar changes to 1.0 maximum progress
             double progress = 1.0;
-            // Bossbar changes message every 30 seconds
-            // Bossbar updates every second
-            // This calculates the increments of the bossbar change
-            double time = 1.0 / 30;
+            // 0.0 bar is empty, 1.0 progress bar is full
+            // This calculates the increments of the bossbar progress change
+            // This time calculation updates progress every tick
+            // Message change is how often the message changes, 20 is ticks per second
+            double time = 1.0 / (MESSAGE_CHANGE_SECONDS * 20);
 
             @Override
             public void run() {
@@ -58,27 +67,27 @@ public class Bar {
                         bar.setTitle(ChatColor.YELLOW + "World Maps at lab.wncc.net");
                         break;
                     case 1:
-                        bar.setColor(BarColor.BLUE);
-                        bar.setTitle(ChatColor.AQUA + "Command usage: /buddy tpspawn");
+                        bar.setColor(BarColor.GREEN);
+                        bar.setTitle(ChatColor.AQUA + "Buddy Command: /buddy tpspawn");
                         break;
                     case 2:
                         bar.setColor(BarColor.RED);
-                        bar.setTitle(ChatColor.GOLD + "Buddy command help: /buddy help");
+                        bar.setTitle(ChatColor.GOLD + "Buddy command: /buddy help");
                         break;
                     default:
                         bar.setColor(BarColor.PURPLE);
-                        bar.setTitle(ChatColor.YELLOW + "Buddy Rules!");
+                        bar.setTitle(ChatColor.YELLOW + "Buddy Rules Minecraft!");
                         count = -1;
                         break;
                 }
                 // Move progress bar to the left each time around
                 progress = progress - time;
-                // Reset the progress bar back to 1
+                // When progress bar is down to 0, reset the progress bar back to 1.0
                 if (progress <= 0) {
                     count++;
                     progress = 1.0;
                 }
             }
-        }, 0, 20);
+        }, 0, 0);
     }
 }
