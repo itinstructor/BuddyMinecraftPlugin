@@ -3,7 +3,7 @@ package com.billthecomputerguy.buddyutil;
  * Name: playerStatistics.java
  * Written by:
  * Written on:
- * Purpose: Demonstrate methods of input
+ * Purpose: Display player statistics
  *****************************************/
 
 import org.bukkit.Bukkit;
@@ -44,16 +44,15 @@ public class PlayerStatistics implements Listener {
         // Purpose and name of scoreboard
         Objective obj = board.registerNewObjective("playerboard", Criteria.DUMMY, boardDisplayName);
 
-        // Set location and displayname
+        // Set location of scoreboard
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        // Set display name to player display name
-        // obj.setDisplayName(ChatColor.GREEN.toString() + player.getDisplayName());
 
         // A Score is a line of text
         Score website = obj.getScore(ChatColor.YELLOW + "lab.wncc.net");
-        // Each line needs a number starting from the bottom
+        // Each line must have a number starting from the bottom
         website.setScore(1);
 
+        // Insert a space before the next score
         Score space = obj.getScore(" ");
         space.setScore(2);
 
@@ -131,7 +130,7 @@ public class PlayerStatistics implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         // Get current player instance
         Player player = event.getPlayer();
-
+        // Track the amount of blocks broken
         long amount = blocksBrocken.get(player.getUniqueId());
         amount++;
         // Update brocksbroken amount in hashmap
@@ -147,8 +146,7 @@ public class PlayerStatistics implements Listener {
     public void onPlayerMove(PlayerMoveEvent e) {
         // Get current player instance
         Player player = e.getPlayer();
-        // If the player doesn't actually move from block to block,
-        // return and don't do anything
+        // If the player doesn't actually move from block to block, return and don't do anything
         if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
             return;
         } else {
@@ -159,7 +157,6 @@ public class PlayerStatistics implements Listener {
             steps.put(player.getUniqueId(), amount);
             // Update scoreboard display
             player.getScoreboard().getTeam("steps").setSuffix(ChatColor.YELLOW.toString() + amount);
-            // steps.get(e.getPlayer()).setScore(steps.get(e.getPlayer()).getScore() + 1);
         }
     }
 }

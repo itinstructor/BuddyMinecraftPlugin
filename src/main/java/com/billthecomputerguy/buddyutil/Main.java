@@ -12,6 +12,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -56,13 +57,13 @@ public final class Main extends JavaPlugin implements Listener {
         if (!bar.getBar().getPlayers().contains(player))
             bar.addPlayer((player));
 
-        // Play chime at join at the pitch of G
-        // e.getPlayer().playSound(e.getPlayer().getLocation(),
-        // Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
             public void run() {
                 sendWNCCChatMessage(player);
+                // Play chime at join at the pitch of G
+                player.playSound(event.getPlayer().getLocation(),
+                        Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
             }
         }, 60L, 1200L * 5L); // 1200 ticks per minute * minutes 5 minutes
 
