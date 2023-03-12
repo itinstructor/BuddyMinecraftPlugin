@@ -7,6 +7,8 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
+
 public class Bar {
     private int taskID = -1;
     // Reference to Main class
@@ -46,6 +48,7 @@ public class Bar {
 
             @Override
             public void run() {
+                // Set bar progress to current calculated progress variable
                 bar.setProgress(progress);
                 switch (count) {
                     case -1:
@@ -63,8 +66,8 @@ public class Bar {
                         bar.setTitle(ChatColor.GOLD + "Buddy command help: /buddy help");
                         break;
                     default:
-                        bar.setColor(BarColor.RED);
-                        bar.setTitle(format("&cBuddy Rules!"));
+                        bar.setColor(BarColor.PURPLE);
+                        bar.setTitle(ChatColor.YELLOW + "Buddy Rules!");
                         count = -1;
                         break;
                 }
@@ -77,10 +80,5 @@ public class Bar {
                 }
             }
         }, 0, 20);
-    }
-
-    // Format message with color code
-    private String format(String msg) {
-        return ChatColor.translateAlternateColorCodes('&', msg);
     }
 }
