@@ -32,7 +32,7 @@ public class SendChat {
             public void run() {
                 sendWNCCChatMessage(player);
 //              // Play chime at the pitch of G
-                player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
+                // player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.059463F);
             }
         }, 60L, 1200L * 20L); // 1200 ticks per minute * minutes 5 minutes
     }
