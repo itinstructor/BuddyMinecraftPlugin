@@ -58,6 +58,6 @@ public final class Main extends JavaPlugin implements Listener {
         String motd = this.getServer().getMotd();
         // Send message to player when they join Buddy's Lobby
         // fadeIn, stay, fadeOut: 20 ticks per second * seconds delay
-        player.sendTitle(ChatColor.GOLD + motd, ChatColor.GOLD + "Welcome!", 20 * 1, 20 * 5, 20 * 1);
+        player.sendTitle(ChatColor.GOLD + motd, ChatColor.GOLD + "Welcome!", 20 * 2, 15 * 5, 20 * 2);
     }
 }

@@ -37,10 +37,10 @@ public class Bar {
         // Show the bar
         bar.setVisible(true);
         // Start the bar runnable
-        cast();
+        startBar();
     }
 
-    public void cast() {
+    public void startBar() {
         // How often the message changes in seconds
         final int MESSAGE_CHANGE_SECONDS = 30;
         taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
@@ -52,7 +52,7 @@ public class Bar {
             // This calculates the increments of the bossbar progress change
             // This time calculation updates progress every tick
             // Message change is how often the message changes, 20 is ticks per second
-            double time = 1.0 / (MESSAGE_CHANGE_SECONDS * 20);
+            final double time = 1.0 / (MESSAGE_CHANGE_SECONDS * 20);
 
             @Override
             public void run() {
