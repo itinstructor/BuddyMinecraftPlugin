@@ -1,6 +1,6 @@
-name: BuddyUtil
+name: Buddy
 version: '${project.version}'
-main: com.billthecomputerguy.buddyutil.Main
+main: com.billthecomputerguy.buddy.Main
 api-version: 1.19
 commands:
   buddy:

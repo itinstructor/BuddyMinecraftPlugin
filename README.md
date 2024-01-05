@@ -1,13 +1,14 @@
 # Buddy Minecraft Plugin
 
-BuddyUtils is a Minecraft Bukkit plugin developed in Intellij and Coretto Java 17 for [Buddy's Minecraft Server](https://lab.wncc.net).
+BuddyUtils is a 1.19.4 and above Minecraft Bukkit plugin developed in Intellij and Coretto Java 17 for [Buddy's Minecraft Server](https://lab.wncc.net).
 
-Buddy's Minecraft server is a project of the Computer Science program at Western Nebraska Community College.
-
-
+Buddy's Minecraft server: a project of the Computer Science program at [Western Nebraska Community College](https://www.wncc.edu).
 
 ## Version History
-- (03-07-23) V1 Added onJoin chat messages, hoverable, and clickable.
+- (07-04-23) V1 Add randomblock command (gives player random high value blocks, or not)
+- (04-01-23) V1 Add jump command
+- (03-24-23) V1 Add doctor command
+- (03-07-23) V1 Add onJoin repeated chat messages, hoverable, and clickable.
 - (03-06-23) V1 Add step counter to scoreboard that measures player movement by block.
 - (03-02-23) V1 Add a scoreboard displaying blocks broken and blocks placed counter.
 - (02-25-23) V1 Add buddy command with tpspawn (teleport to worldspawn) and help.

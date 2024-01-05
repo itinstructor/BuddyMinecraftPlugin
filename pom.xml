@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.billthecomputerguy</groupId>
-    <artifactId>BuddyUtil</artifactId>
+    <artifactId>Buddy</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>BuddyUtil</name>
+    <name>Buddy</name>
 
     <properties>
         <java.version>1.8</java.version>
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.19.3-R0.1-SNAPSHOT</version>
+            <version>1.19.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
