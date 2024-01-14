@@ -97,30 +97,38 @@ public class BossBarDisplay {
                 switch (count) {
                     case -1:
                         break;
+
                     case 0:
                         bar.setColor(BarColor.PINK);
                         bar.setTitle(ChatColor.YELLOW + "World Maps at lab.wncc.net");
                         break;
+
                     case 1:
                         bar.setColor(BarColor.GREEN);
                         bar.setTitle(ChatColor.AQUA + "Buddy Command: /buddy tpspawn");
                         break;
+
                     case 2:
                         bar.setColor(BarColor.BLUE);
                         bar.setTitle(ChatColor.GOLD + "Buddy command: /buddy help");
                         break;
+
                     case 3:
                         bar.setColor(BarColor.YELLOW);
-                        bar.setTitle(ChatColor.GREEN + "Buddy command: /playsong");
+                        //  𝄞 𝅘𝅥𝅮 https://www.unicode.org/charts/beta/nameslist/n_1D100.html
+                        bar.setTitle(ChatColor.GREEN + "\uD834\uDD60 \uD834\uDD60 Buddy command: /playsong");
                         break;
+
                     case 4:
                         bar.setColor(BarColor.BLUE);
                         bar.setTitle(ChatColor.BLUE + "Buddy command: /buddy randomblock");
                         break;
+
                     case 5:
                         bar.setColor(BarColor.PURPLE);
                         bar.setTitle(ChatColor.AQUA + "facebook.com/wnccitprogram");
                         break;
+
                     default:
                         bar.setColor(BarColor.PURPLE);
                         bar.setTitle(ChatColor.YELLOW + "Buddy Rules Minecraft!");

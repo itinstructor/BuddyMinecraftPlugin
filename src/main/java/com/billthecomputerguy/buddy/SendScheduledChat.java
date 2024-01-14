@@ -37,6 +37,7 @@ public class SendScheduledChat {
 
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             int count = 0;
+
             @Override
             public void run() {
                 switch (count) {
@@ -50,36 +51,43 @@ public class SendScheduledChat {
                         start.addExtra(url);
                         player.spigot().sendMessage(start);
                         break;
+
                     case 1:
                         TextComponent tpspawn = new TextComponent("\n§6Buddy Command: /buddy tpspawn\n");
                         tpspawn.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddy help")));
                         // Send chat message to player
                         player.spigot().sendMessage(tpspawn);
                         break;
+
                     case 2:
                         TextComponent doctor = new TextComponent("\n§6Buddy Command: /buddy doctor\n");
                         doctor.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddy help")));
                         // Send chat message to player
                         player.spigot().sendMessage(doctor);
                         break;
+
                     case 3:
                         TextComponent jump = new TextComponent("\n§2Buddy Command: /buddy jump\n");
                         jump.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddy help")));
                         // Send chat message to player
                         player.spigot().sendMessage(jump);
                         break;
+
                     case 4:
                         TextComponent buddySong = new TextComponent("\n§6Buddy Command: /buddysong\n");
-                        buddySong.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddysong")));
+                        // Add music unicode 𝄞 𝅘𝅥𝅮 https://www.unicode.org/charts/beta/nameslist/n_1D100.html
+                        buddySong.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6\uD834\uDD60 \uD834\uDD60 Buddy Command: /buddysong")));
                         // Send chat message to player
                         player.spigot().sendMessage(buddySong);
                         break;
+
                     case 5:
                         TextComponent randomBlock = new TextComponent("\n§6Buddy Command: /buddy randomblock\n");
                         randomBlock.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /randomblock")));
                         // Send chat message to player
                         player.spigot().sendMessage(randomBlock);
                         break;
+
                     default:
                         // Reset count and start over with the first chat message
                         count = 0;

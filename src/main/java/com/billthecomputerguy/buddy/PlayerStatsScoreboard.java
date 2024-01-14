@@ -48,7 +48,7 @@ public class PlayerStatsScoreboard implements Listener {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         /*****************************************************************************
-         * DISPAY BLOCKS BROKEN
+         * DISPLAY BLOCKS BROKEN
          *****************************************************************************/
         // Teams are used for dynamic scoreboard text
         Team blocksBroken = board.registerNewTeam("blocksbroken");
@@ -111,13 +111,16 @@ public class PlayerStatsScoreboard implements Listener {
         // Get current player instance
         Player player = event.getPlayer();
 
+        // Retrieve the current count of blocks placed by the player
         long amount = playerStats.getBlocksPlaced();
+        // Increase the block count by 1 for the current placed block
         amount++;
 
-        // Update brocksplaced amount in PlayerStats class
+        // Update the 'blocksplaced' amount in the PlayerStats class
         playerStats.setBlocksPlaced(amount);
 
-        // Update scoreboard display
+        // Update the scoreboard display for 'blocksplaced'
+        // Using the 'blockplaced' team on the scoreboard, set the suffix to display the updated count in yellow
         player.getScoreboard().getTeam("blocksplaced").setSuffix(ChatColor.YELLOW.toString() + amount);
     }
 
@@ -131,12 +134,15 @@ public class PlayerStatsScoreboard implements Listener {
 
         // Track the amount of blocks broken
         long amount = playerStats.getBlocksBroken();
+
+        // Increase the block count by 1 for the current broken block
         amount++;
 
-        // Update brocksbroken amount in PlayerStats
+        // Update the 'blocks broken' count in the PlayerStats
         playerStats.setBlocksBroken(amount);
 
-        // Update scoreboard display
+        // Update the scoreboard display for the 'blocksbroken'
+        // Using the 'blocksbroken' team on the scoreboard, set the suffix to display the updated count in yellow
         player.getScoreboard().getTeam("blocksbroken").setSuffix(ChatColor.YELLOW.toString() + amount);
     }
 
@@ -148,18 +154,21 @@ public class PlayerStatsScoreboard implements Listener {
         // Get current player instance
         Player player = e.getPlayer();
 
-        // If the player doesn't actually move from block to block, return and don't do anything
+        // Check if the player has actually moved from block to block in any direction
         if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockY() == e.getTo().getBlockY() && e.getFrom().getBlockZ() == e.getTo().getBlockZ()) {
+            // If the player hasn't move, do nothing and return
             return;
         } else {
-            // Update steps by one block
+            // The player has moved, retrieve the current count of steps by the player
             long amount = playerStats.getSteps();
+
+            // Increase the move count by 1 for the current player block move
             amount++;
 
             // Update steps amount in PlayerStats class
             playerStats.setSteps(amount);
 
-            // Update scoreboard display
+            // Using the 'steps' team on the scoreboard, set the suffix to display the updated count in yellow
             player.getScoreboard().getTeam("steps").setSuffix(ChatColor.YELLOW.toString() + amount);
         }
     }
