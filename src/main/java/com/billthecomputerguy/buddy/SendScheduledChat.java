@@ -66,7 +66,7 @@ public class SendScheduledChat {
 
                     case 1:
                         // Create a new TextComponent for a chat message
-                        TextComponent tpspawn = new TextComponent(ChatColor.RED + "\n§6Buddy Command: /buddy tpspawn\n");
+                        TextComponent tpspawn = new TextComponent(ChatColor.GREEN + "\n§6Buddy Command: /buddy tpspawn\n");
 
                         // Add a hover event to the TextComponent to show additional information when hovered over
                         tpspawn.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddy help")));
@@ -110,7 +110,7 @@ public class SendScheduledChat {
 
                     case 5:
                         // Create a new TextComponent for a chat message
-                        TextComponent randomBlock = new TextComponent(ChatColor.GOLD + "\n§6Buddy Command: /buddy randomblock\n");
+                        TextComponent randomBlock = new TextComponent(ChatColor.GREEN + "\n§6Buddy Command: /buddy randomblock\n");
 
                         // Add a hover event to the TextComponent to show additional information when hovered over
                         randomBlock.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /randomblock")));
