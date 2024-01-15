@@ -6,6 +6,7 @@ package com.billthecomputerguy.buddy;
  * Purpose: Send scheduled chat messages to player
  */
 
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -42,49 +43,79 @@ public class SendScheduledChat {
             public void run() {
                 switch (count) {
                     case 0:
-                        // Send world map at lab.wncc.net chat message
+                        // Send a chat message with a clickable link to world maps at lab.wncc.net
+
+                        // Create a new TextComponent for the introductory text
                         TextComponent start = new TextComponent("\n§7World maps at: ");
+
+                        // Create a new TextComponent for the clickable link with specified color
                         TextComponent url = new TextComponent("§B§6lab.wncc.net");
+
+                        // Set the click event to open the specified URL when clicked
                         url.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://lab.wncc.net"));
+
+                        // Set the hover event to display a tooltip when hovered over
                         url.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click for world maps.")));
-                        // Combine text components into one command
+
+                        // Combine the introductory text and the clickable link into one TextComponent
                         start.addExtra(url);
+
+                        // Send the composed TextComponent as a chat message to the player
                         player.spigot().sendMessage(start);
                         break;
 
                     case 1:
-                        TextComponent tpspawn = new TextComponent("\n§6Buddy Command: /buddy tpspawn\n");
+                        // Create a new TextComponent for a chat message
+                        TextComponent tpspawn = new TextComponent(ChatColor.RED + "\n§6Buddy Command: /buddy tpspawn\n");
+
+                        // Add a hover event to the TextComponent to show additional information when hovered over
                         tpspawn.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddy help")));
-                        // Send chat message to player
+
+                        // Send the chat message to the player using the Spigot API
                         player.spigot().sendMessage(tpspawn);
                         break;
 
                     case 2:
-                        TextComponent doctor = new TextComponent("\n§6Buddy Command: /buddy doctor\n");
+                        // Create a new TextComponent for a chat message
+                        TextComponent doctor = new TextComponent(ChatColor.GOLD + "\n§6Buddy Command: /buddy doctor\n");
+
+                        // Add a hover event to the TextComponent to show additional information when hovered over
                         doctor.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddy help")));
-                        // Send chat message to player
+
+                        // Send the chat message to the player using the Spigot API
                         player.spigot().sendMessage(doctor);
                         break;
 
                     case 3:
-                        TextComponent jump = new TextComponent("\n§2Buddy Command: /buddy jump\n");
+                        // Create a new TextComponent for a chat message
+                        TextComponent jump = new TextComponent(ChatColor.BLUE + "\n§2Buddy Command: /buddy jump\n");
+
+                        // Add a hover event to the TextComponent to show additional information when hovered over
                         jump.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddy help")));
-                        // Send chat message to player
+
+                        // Send the chat message to the player using the Spigot API
                         player.spigot().sendMessage(jump);
                         break;
 
                     case 4:
-                        TextComponent buddySong = new TextComponent("\n§6Buddy Command: /buddysong\n");
-                        // Add music unicode 𝄞 𝅘𝅥𝅮 https://www.unicode.org/charts/beta/nameslist/n_1D100.html
-                        buddySong.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6\uD834\uDD60 \uD834\uDD60 Buddy Command: /buddysong")));
-                        // Send chat message to player
+                        // Create a new TextComponent for a chat message
+                        TextComponent buddySong = new TextComponent(ChatColor.RED + "\n§6Buddy Command: /buddysong\n");
+
+                        // Add a hover event to the TextComponent to show additional information when hovered over
+                        buddySong.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /buddysong")));
+
+                        // Send the chat message to the player using the Spigot API
                         player.spigot().sendMessage(buddySong);
                         break;
 
                     case 5:
-                        TextComponent randomBlock = new TextComponent("\n§6Buddy Command: /buddy randomblock\n");
+                        // Create a new TextComponent for a chat message
+                        TextComponent randomBlock = new TextComponent(ChatColor.GOLD + "\n§6Buddy Command: /buddy randomblock\n");
+
+                        // Add a hover event to the TextComponent to show additional information when hovered over
                         randomBlock.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§6Buddy Command: /randomblock")));
-                        // Send chat message to player
+
+                        // Send the chat message to the player using the Spigot API
                         player.spigot().sendMessage(randomBlock);
                         break;
 
