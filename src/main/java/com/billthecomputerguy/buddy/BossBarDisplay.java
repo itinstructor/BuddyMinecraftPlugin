@@ -116,7 +116,7 @@ public class BossBarDisplay {
                     case 3:
                         bar.setColor(BarColor.YELLOW);
                         //  𝄞 𝅘𝅥𝅮 https://www.unicode.org/charts/beta/nameslist/n_1D100.html
-                        bar.setTitle(ChatColor.GREEN + "\uD834\uDD60 \uD834\uDD60 Buddy command: /playsong");
+                        bar.setTitle(ChatColor.GREEN + "\uD834\uDD60\uD834\uDD60 Buddy command: /playsong");
                         break;
 
                     case 4:

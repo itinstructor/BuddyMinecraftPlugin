@@ -40,9 +40,11 @@ public final class Main extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         // Get current player instance
         Player player = (Player) event.getPlayer();
+
         // Add player to the bar if they are not part of the bar already
         if (!bar.getBar().getPlayers().contains(player))
             bar.addPlayer((player));
+
         // Send scheduled chat messages to the player
         sendScheduledChat = new SendScheduledChat(this);
         sendScheduledChat.createWNCCChatMessageRunnable(player);

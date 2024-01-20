@@ -15,12 +15,14 @@ public class RandomBlockCommand {
             Material.EMERALD_BLOCK,
             Material.GOLD_BLOCK,
             Material.OBSIDIAN,
-            Material.COAL_BLOCK
+            Material.COAL_BLOCK,
+            Material.ELYTRA
     );
 
     private final Random random = new Random();
 
-    private final Player player; // Create Player to reference player from other class
+    // Create Player reference to reference player from other class
+    private final Player player;
 
     public RandomBlockCommand(Player player) {
         this.player = player;

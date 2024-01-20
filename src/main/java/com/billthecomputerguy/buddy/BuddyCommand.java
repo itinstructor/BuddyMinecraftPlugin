@@ -105,13 +105,14 @@ public class BuddyCommand implements CommandExecutor {
                 } else if (args[0].equalsIgnoreCase("randomblock")) {
                     // If the player is not in the cooldown cache
                     if (!cooldown.asMap().containsKey(player.getUniqueId())) {
+
                         // Give player a random high value block, or not.
                         randomBlockCommand = new RandomBlockCommand(player);
                         randomBlockCommand.randomBlock();
 
                         // Put player in cooldown, add time in cooldown to current Sytstem time in milliseconds
                         // Store cooldown time with player in Millseconds
-                        cooldown.put(player.getUniqueId(), System.currentTimeMillis() + (cooldownTime * 1000));
+                        cooldown.put(player.getUniqueId(), System.currentTimeMillis() + (cooldownTime * 500));
                         return true;
                     } else {
                         // Calculate how much time is left in the player cooldown
