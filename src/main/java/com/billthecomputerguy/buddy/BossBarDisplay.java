@@ -80,6 +80,7 @@ public class BossBarDisplay {
          */
 
         taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            // Track which bar we are currently displaying
             int count = -1;
 
             // The bossbar is initialized to 1.0 maximum progress
@@ -144,6 +145,6 @@ public class BossBarDisplay {
                     progress = 1.0;
                 }
             }
-        }, 0, 0); // The 0, 0 indicates running the task immediately and repeatedly.
+        }, 0, 0); // 0, 0 indicates running the task immediately and repeatedly.
     }
 }
